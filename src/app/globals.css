@@ -5,7 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-color: red;
+  --secondary-color: blue;
 }
+
+/* .theme-blue {
+  --primary-color: blue;
+  --secondary-color: red;
+  --my-test: color;
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {
