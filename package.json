@@ -1,27 +1,33 @@
 {
-  "name": "tailwindcss-dynamic-themes",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.2"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.2",
-    "@eslint/eslintrc": "^3"
-  }
+	"name": "tailwindcss-dynamic-themes",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"postbuild": "npx tsx create-tailwind-theme-files.ts",
+		"start": "next start",
+		"format": "npx @biomejs/biome format --write ./* ./src",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"imports-loader": "^5.0.0",
+		"next": "15.1.2",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tsx": "^4.19.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@eslint/eslintrc": "^3",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"eslint": "^9",
+		"eslint-config-next": "15.1.2",
+		"postcss": "^8",
+		"tailwindcss": "^3.4.1",
+		"ts-node": "^10.9.2",
+		"typescript": "^5"
+	}
 }
