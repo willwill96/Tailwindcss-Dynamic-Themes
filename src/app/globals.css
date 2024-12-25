@@ -9,12 +9,6 @@
 	--secondary-color: blue;
 }
 
-/* .theme-blue {
-  --primary-color: blue;
-  --secondary-color: red;
-  --my-test: color;
-} */
-
 @media (prefers-color-scheme: dark) {
 	:root {
 		--background: #0a0a0a;
