@@ -24,15 +24,22 @@ const themes = {
 		],
 	},
 };
-export default function RootLayout({
+export default async function RootLayout({
 	children,
+  params,
+  ...rest
 }: Readonly<{
 	children: React.ReactNode;
+  
 }>) {
+  const searchParams = await params
+  console.log('rest', searchParams)
+
+  const blueTheme = searchParams.get('theme') === 'blue'
 	return (
 		<html lang="en">
 			<body className={`antialiased`}>{children}</body>
-			<style>{`:root{${themes.blue.styles}}`}</style>
+			<style>{`:root{${blueTheme ? themes.blue.styles : themes.red.styles}}`}</style>
 		</html>
 	);
 }
