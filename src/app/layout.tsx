@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { allThemes } from "@/tailwind/themes";
 import "./globals.css";
 import { generateInlineCss } from "@/tailwind/generate-inline-css-vars";
 
