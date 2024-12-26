@@ -21,7 +21,7 @@ These are the important parts of this example:
 
 - [Tailwind Theme Definitions](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/tailwind/themes.ts)
 - [Utilities to generate inline styles](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/tailwind/generate-inline-css-vars.ts)
-- [Injection of generate inline styles](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/app/layout.tsx#L24)
+- [Injection of generate inline styles](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/app/layout.tsx#L23)
 
 Pros:
 
