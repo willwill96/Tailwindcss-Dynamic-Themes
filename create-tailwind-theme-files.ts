@@ -21,7 +21,7 @@ const getFileHash = (path: string) =>
 
 allThemes.forEach((theme) => {
 	execSync(
-		`TAILWIND_THEME=${theme.name} npx tailwindcss -i ./node_modules/tailwindcss/tailwind.css -o ${themeNameToFileLocation(`tailwind-${theme.name}`)}`,
+		`TAILWIND_THEME=${theme.name} npx tailwindcss -i ./node_modules/tailwindcss/tailwind.css -o ${themeNameToFileLocation(`tailwind-${theme.name}`)} --minify`,
 	);
 });
 
