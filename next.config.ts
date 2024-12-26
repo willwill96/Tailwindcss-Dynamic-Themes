@@ -23,7 +23,6 @@ const nextConfig: NextConfig = {
 			},
 		},
 	},
-	/* config options here */
 	webpack: (webpackConfig) => {
 		if (process.env.NODE_ENV === "production") return webpackConfig;
 		webpackConfig.module.rules.push({
@@ -32,7 +31,7 @@ const nextConfig: NextConfig = {
 				{
 					loader: "imports-loader",
 					options: {
-						imports: [{ syntax: "side-effects", moduleName: "./globals.css" }],
+						imports: [{ syntax: "side-effects", moduleName: "tailwindcss/tailwind.css" }],
 					},
 				},
 			],
