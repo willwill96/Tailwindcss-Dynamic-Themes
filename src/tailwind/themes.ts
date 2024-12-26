@@ -5,7 +5,7 @@ interface ThemeColors {
 	foreground: string;
 }
 
-interface Theme {
+export interface Theme {
 	name: string;
 	colors: ThemeColors;
 	dark: { colors: Partial<ThemeColors> };

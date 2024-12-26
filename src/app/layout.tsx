@@ -20,9 +20,7 @@ export default async function RootLayout({
 		<html lang="en">
 			<body className={`antialiased`}>
 				{children}
-				<style>
-					{generateInlineCss(currentThemeName)}
-				</style>
+				<style>{generateInlineCss(currentThemeName)}</style>
 			</body>
 		</html>
 	);
