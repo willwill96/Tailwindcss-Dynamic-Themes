@@ -1,9 +1,7 @@
 import { execSync } from "child_process";
-import { redTheme, blueTheme } from "./src/themes";
 import { createReadStream, readFileSync, renameSync, writeFileSync } from "fs";
 import crypto from "crypto";
-
-const themes = [redTheme, blueTheme];
+import { allThemes } from "@/themes";
 
 const themeNameToFileLocation = (themeName: string) => {
 	return `./.next/static/css/${themeName}.css`;
@@ -18,7 +16,7 @@ const getFileHash = (path: string) =>
 		rs.on("end", () => resolve(hash.digest("hex")));
 	});
 
-themes.forEach((theme) => {
+allThemes.forEach((theme) => {
 	execSync(
 		`TAILWIND_THEME=${theme.name} npx tailwindcss -i ./node_modules/tailwindcss/tailwind.css -o ${themeNameToFileLocation(`tailwind-${theme.name}`)}`,
 	);
@@ -27,8 +25,8 @@ themes.forEach((theme) => {
 const locations = [] as { name: string; filename: string }[];
 
 const convertFileNamesToFileHashes = async () => {
-	for (let i = 0; i < themes.length; i++) {
-		const themeName = themes[i].name;
+	for (let i = 0; i < allThemes.length; i++) {
+		const themeName = allThemes[i].name;
 		const filename = (
 			(await getFileHash(
 				themeNameToFileLocation(`tailwind-${themeName}`),
@@ -41,11 +39,11 @@ const convertFileNamesToFileHashes = async () => {
 		locations.push({ name: themeName, filename });
 	}
 	const envLines = locations.reduce((acc, curr) => {
-		return acc.concat(`\nTAILWIND_THEME_${curr.name}=${curr.filename}`);
+		return acc.concat(`${curr.name},${curr.filename};`);
 	}, "");
 
 	const existingContents = readFileSync(".env.production").toString();
-	writeFileSync(".env.production", `${existingContents}${envLines}`);
+	writeFileSync(".env.production", `${existingContents}\nTAILWIND_DYNAMIC_THEMES=${envLines}`);
 };
 
 convertFileNamesToFileHashes();

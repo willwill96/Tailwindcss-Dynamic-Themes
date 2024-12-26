@@ -14,12 +14,10 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-      <head>
-        <ProductionStyleImporter />
-      </head>
-			<body className={`antialiased`}>
-				{children}
-			</body>
+			<head>
+				<ProductionStyleImporter />
+			</head>
+			<body className={`antialiased`}>{children}</body>
 		</html>
 	);
 }

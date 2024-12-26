@@ -1,10 +1,16 @@
-import { redTheme, blueTheme } from "./src/themes";
+import { allThemes } from "./src/themes";
 import type { Config } from "tailwindcss";
+import { getLocalTheme } from "./src/utils/get-local-theme";
 
-const currentTheme =
-	process.env.TAILWIND_THEME === "blue" ? blueTheme : redTheme;
+// Nextjs does not reload env vars for the tailwind config so we parse the .env.development file ourselves so that hot reloading works as expected
+let computedTheme = process.env.TAILWIND_THEME
+if (process.env.NODE_ENV === 'development') {
+	computedTheme = getLocalTheme()
+}
 
-export default {
+const currentTheme = allThemes.find((theme)=>computedTheme === theme.name) || allThemes[0]
+
+export default { 
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
