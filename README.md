@@ -3,22 +3,29 @@ Example of Tailwindcss using dynamically SSR'ed css variables.
 
 # Problem Statement
 
-Serving multiple themes from Tailwindcss can be pretty powerful. This repo serves as an example of ways that you can support multiple themes in your tailwind+next.js app. This repo & readme assumes that you have already decided to theme your tailwind styles with css variables. See [tailwind docs](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more info on how to setup your tailwind colors using css variables. The goal of these examples is to have a single app deliver multiple themes, without meaningfully impacting bundle sizes as the number of themes grow. In this example, I'm dynamically rendering the theme based on a cookie (`theme`), but these approaches could also be adapted to be based on other cookies, headers or other request parameters. 
+Serving multiple themes from Tailwindcss can be pretty powerful. This repo serves as an example of ways that you can support multiple themes in your tailwind+next.js app. This repo & readme assumes that you have already decided to theme your tailwind styles with css variables. See [tailwind docs](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more info on how to setup your tailwind colors using css variables. 
+
+The goal of these examples is to have a single app deliver multiple themes, without meaningfully impacting bundle sizes as the number of themes grow. In this example, I'm dynamically rendering the theme based on a cookie (`theme`), but these approaches could also be adapted to be based on other cookies, headers or other request parameters. 
 
 
 # Example 1 - Inject CSS Variables into the initial html as inline styles
 
-See the code in [./inject-inline](./inject-inline) for how this is setup. The general idea here is:
+[Demo here](https://tailwindcss-dynamic-themes-git-inli-af239a-willwill96s-projects.vercel.app?_vercel_share=Rtke76sSnbtKT0ZLMKcIbvBp5pN7Mtmc)
+
+See the code in the [inline-styles branch](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/tree/inline-styles) for how this is setup. The general idea here is:
 
 1. Define your colors in your tailwind config using css variables
 2. Inject the css variables into your page's returned html (most likely through your root layout file)
 
 These are the important parts of this example:
 
+- [Tailwind Theme Definitions](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/tailwind/themes.ts)
+- [Utilities to generate inline styles](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/tailwind/generate-inline-css-vars.ts)
+- [Injection of generate inline styles](https://github.com/willwill96/Tailwindcss-Dynamic-Themes/blob/inline-styles/src/app/layout.tsx#L24)
 
 Pros:
 
-- Relatively easy to implement
+- Easy to implement
 
 Cons:
 
@@ -27,10 +34,13 @@ Cons:
 
 # Example 2 - Inject Additional Stylesheets into the initial html as links to css files
 
-See the code in [./extra-stylesheets](./extra-stylesheets) for how this is setup. The general idea here is:
+[Demo here](https://tailwindcss-dynamic-themes.vercel.app/)
+
+See the code in the `main` branch for how this is setup. The general idea here is:
 
 1. Remove tailwindcss from the app's global css file
-2. Build the CSS files for tailwind after nextjs 
+2. Build the CSS files for tailwind as a postbuild step
+3. Inject Links to the generated css files at request time
 
 These are the important parts of this example:
 

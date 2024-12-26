@@ -31,7 +31,12 @@ const nextConfig: NextConfig = {
 				{
 					loader: "imports-loader",
 					options: {
-						imports: [{ syntax: "side-effects", moduleName: "tailwindcss/tailwind.css" }],
+						imports: [
+							{
+								syntax: "side-effects",
+								moduleName: "tailwindcss/tailwind.css",
+							},
+						],
 					},
 				},
 			],

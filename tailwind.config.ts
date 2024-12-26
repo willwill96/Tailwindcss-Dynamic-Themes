@@ -10,8 +10,8 @@ export default {
 	],
 	theme: {
 		extend: {
-			colors: getTailwindThemeColors()
-		}
+			colors: getTailwindThemeColors(),
+		},
 	},
 	plugins: [dynamicThemePlugin],
 } satisfies Config;
