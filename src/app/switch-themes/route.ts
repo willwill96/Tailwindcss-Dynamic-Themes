@@ -13,18 +13,23 @@ export async function GET(request: NextRequest) {
 
 	cookieStore.set("theme", theme);
 
-    if (process.env.NODE_ENV === 'development') {
-        const envDevelopmentLocation = join(process.cwd(), '.env.development')
-        const tailwindThemeSnippet = `TAILWIND_THEME=${theme}`
-        let contents
-        if (existsSync(envDevelopmentLocation)) {
-            const currentContents = readFileSync(envDevelopmentLocation).toString()
-            contents = currentContents.includes('TAILWIND_THEME') ? currentContents.replace(/^TAILWIND_THEME=([^\n$]*)/, tailwindThemeSnippet) : currentContents.concat(tailwindThemeSnippet)
-        } else {
-            contents = tailwindThemeSnippet
-        }
-        writeFileSync(envDevelopmentLocation, contents)
-    }
+	if (process.env.NODE_ENV === "development") {
+		const envDevelopmentLocation = join(process.cwd(), ".env.development");
+		const tailwindThemeSnippet = `TAILWIND_THEME=${theme}`;
+		let contents;
+		if (existsSync(envDevelopmentLocation)) {
+			const currentContents = readFileSync(envDevelopmentLocation).toString();
+			contents = currentContents.includes("TAILWIND_THEME")
+				? currentContents.replace(
+						/^TAILWIND_THEME=([^\n$]*)/,
+						tailwindThemeSnippet,
+					)
+				: currentContents.concat(tailwindThemeSnippet);
+		} else {
+			contents = tailwindThemeSnippet;
+		}
+		writeFileSync(envDevelopmentLocation, contents);
+	}
 
 	return new Response(null, { status: 202 });
 }

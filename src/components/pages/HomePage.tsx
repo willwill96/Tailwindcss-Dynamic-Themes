@@ -6,7 +6,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { allThemes } from "@/themes";
+import { allThemes } from "@/tailwind/themes";
 
 interface HomePageProps {
 	currentTheme: string;

@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { createReadStream, readFileSync, renameSync, writeFileSync } from "fs";
 import crypto from "crypto";
-import { allThemes } from "@/themes";
+import { allThemes } from "@/tailwind/themes";
 
 const themeNameToFileLocation = (themeName: string) => {
 	return `./.next/static/css/${themeName}.css`;
@@ -43,7 +43,10 @@ const convertFileNamesToFileHashes = async () => {
 	}, "");
 
 	const existingContents = readFileSync(".env.production").toString();
-	writeFileSync(".env.production", `${existingContents}\nTAILWIND_DYNAMIC_THEMES=${envLines}`);
+	writeFileSync(
+		".env.production",
+		`${existingContents}\nTAILWIND_DYNAMIC_THEMES=${envLines}`,
+	);
 };
 
 convertFileNamesToFileHashes();
