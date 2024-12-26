@@ -5,7 +5,6 @@
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build",
-		"postbuild": "npx tsx create-tailwind-theme-files.ts",
 		"start": "next start",
 		"format": "npx @biomejs/biome format --write ./* ./src",
 		"lint": "next lint"

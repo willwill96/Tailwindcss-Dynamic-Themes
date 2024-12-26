@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import "./globals.css";
-import ProductionStyleImporter from "@/components/ProductionStyleImporter";
+import { generateInlineCss } from "@/tailwind/generate-inline-css-vars";
 
 export const metadata: Metadata = {
 	title: "Tailwindcss Dynamic Themes",
@@ -12,12 +13,17 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const cookieStore = await cookies();
+	const currentThemeName = cookieStore.get("theme")?.value;
+
 	return (
 		<html lang="en">
-			<head>
-				<ProductionStyleImporter />
-			</head>
-			<body className={`antialiased`}>{children}</body>
+			<body className={`antialiased`}>
+				{children}
+				<style>
+					{generateInlineCss(currentThemeName)}
+				</style>
+			</body>
 		</html>
 	);
 }
