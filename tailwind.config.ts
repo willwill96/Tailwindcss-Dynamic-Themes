@@ -1,5 +1,4 @@
 import { getTailwindThemeColors } from "./src/tailwind/get-tailwind-theme-colors";
-import { dynamicThemePlugin } from "./src/tailwind/dynamic-theme-plugin";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -13,5 +12,5 @@ export default {
 			colors: getTailwindThemeColors()
 		}
 	},
-	plugins: [dynamicThemePlugin],
+	plugins: [],
 } satisfies Config;
