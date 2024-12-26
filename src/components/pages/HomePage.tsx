@@ -16,7 +16,7 @@ export default function HomePage(props: HomePageProps) {
 	return (
 		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
 			<main className="flex flex-col gap-8 row-start-2 items-center w-full h-full justify-items-center">
-				<h1 className="text-3xl font-semibold text-gray-200 rounded">
+				<h1 className="text-3xl font-semibold text-foreground rounded">
 					Tailwindcss Dynamic Themes Example
 				</h1>
 
